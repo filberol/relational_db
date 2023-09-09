@@ -1,0 +1,12 @@
+#ifndef LAB1LLP_BIGINT_CELL_H
+#define LAB1LLP_BIGINT_CELL_H
+
+#include <stdint.h>
+#include "cell.h"
+
+struct BigIntCell {
+    struct TableCell meta;
+    int64_t value;
+};
+
+#endif //LAB1LLP_BIGINT_CELL_H

@@ -3,4 +3,8 @@ project(lab1llp C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(lab1llp main.c)
+add_executable(lab1llp
+        main.c
+        types/column_types.c include/types/column_types.h
+        types/cell_types/int_cell.c include/types/cell_types/int_cell.h
+        types/cell_types/cell.c include/types/cell_types/cell.h include/types/cell_types/string_cell.h include/types/cell_types/bool_cell.h include/types/cell_types/bigint_cell.h include/types/cell_types/float_cell.h)
