@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "../../consts/sectors.h"
+#include "../../consts/sector_consts.h"
 
 // Sector attributes
 struct SectorHeader {

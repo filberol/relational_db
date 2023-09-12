@@ -1,6 +1,0 @@
-#ifndef LAB1LLP_SECTORS_H
-#define LAB1LLP_SECTORS_H
-
-#define SECTOR_SIZE 512
-
-#endif //LAB1LLP_SECTORS_H

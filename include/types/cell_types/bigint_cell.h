@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "cell.h"
 
-struct BigIntCell {
+struct BigIntTableCell {
     struct TableCell meta;
     int64_t value;
 };
