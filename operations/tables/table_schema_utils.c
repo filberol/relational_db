@@ -1,5 +1,11 @@
-//
-// Created by Administrator on 12.09.2023.
-//
+#include "../../include/utils/table_schema_utils.h"
 
-#include "table_schema_utils.h"
+#include <string.h>
+
+struct TableSchema build_empty_schema() {
+    struct TableSchema new_schema;
+    new_schema.id = 1;
+    strcpy(new_schema.name, "empty");
+    // No init columns, builder pattern
+    return new_schema;
+}
