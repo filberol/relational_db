@@ -22,6 +22,7 @@ struct TableSchema {
     int id;
     char name[TABLE_MAX_NAME_LENGTH];
     uint32_t data_first_sector;
+    uint32_t data_last_sector;
     union TableColumn columns[TABLE_MAX_COLUMNS];
 };
 
