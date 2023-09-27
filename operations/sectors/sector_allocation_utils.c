@@ -1,4 +1,4 @@
-#include "../../include/sectors/sector_allocation_utils.h"
+#include "../../include/sectors/sector_utils.h"
 
 /*
  * Returns

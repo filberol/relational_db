@@ -12,12 +12,12 @@ add_executable(lab1llp
         include/types/cell_types/bigint_cell.h include/types/cell_types/float_cell.h
         include/types/schema/table_schema.h include/types/file_static_header.h
         io/files/file_manager.c consts/sector_consts.h include/sectors/sectors.h
-        consts/table_consts.h operations/tables/table_schema_utils.c include/utils/table_schema_utils.h
+        consts/table_consts.h operations/schemas/table_schema_utils.c include/tables/table_schema_utils.h
         operations/files/static_header_utils.c include/utils/static_header_utils.h tests/header_test.c
-        operations/sectors/sector_allocation_utils.c include/sectors/sector_allocation_utils.h
+        operations/sectors/sector_allocation_utils.c include/sectors/sector_utils.h
         include/types/table_index.h debug/debug_utils.c include/debug/debug_utils.h tests/tests.h
         tests/allocation_test.c
         tests/sector_structs.c
-        operations/tables/table_index_utils.c include/utils/table_index_utils.h utils/hash_utils.c
+        operations/tables/table_index_utils.c include/tables/table_index_utils.h utils/hash_utils.c
         include/utils/hash_utils.h
-        consts/hash_consts.h include/files/file_manager.h operations/tables/table_index_io_utils.c tests/index_table.c)
+        consts/hash_consts.h include/files/file_manager.h operations/tables/table_index_io_utils.c tests/index_table.c operations/sectors/sector_io_utils.c operations/sectors/sector_header_utils.c)

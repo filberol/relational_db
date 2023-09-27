@@ -6,8 +6,8 @@
 #include "../include/types/file_static_header.h"
 #include "../include/utils/static_header_utils.h"
 #include "../include/types/table_index.h"
-#include "../include/sectors/sector_allocation_utils.h"
-#include "../include/utils/table_index_utils.h"
+#include "../include/sectors/sector_utils.h"
+#include "../include/tables/table_index_utils.h"
 
 int test_header();
 int test_alloc();
