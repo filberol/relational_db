@@ -9,7 +9,7 @@ struct TableIndex {
     uint32_t schema_sector;
 };
 
-struct TableIndexTable {
+struct TableIndexArray {
     struct TableIndex table_map[MAX_TABLES_COUNT];
 };
 

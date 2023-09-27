@@ -6,5 +6,7 @@ int main() {
     test_header();
     printf("\tTest 2 - Does allocating change header\n");
     test_alloc();
+    printf("\tTest 3 - Trying to read something from sector\n");
+    check_sector_write();
     return 0;
 }

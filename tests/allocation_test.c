@@ -11,12 +11,10 @@ int test_alloc() {
     FILE* file = fopen("test2.bin", "wb+");
     write_static_header(file, &def_header);
 
-    debug_static_header(file);
-
     uint32_t alloc = allocate_sector(file, 3, -1, -1);
-    printf("Allocated from sector %d\n", alloc);
+    uint32_t alloc2 = allocate_sector(file, 3, -1, -1);
+    printf("Allocated sectors %d and %d\n", alloc, alloc2);
 
-    debug_static_header(file);
     fclose(file);
 
     return 0;

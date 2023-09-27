@@ -17,4 +17,4 @@ add_executable(lab1llp
         operations/sectors/sector_allocation_utlis.c include/sectors/sector_allocation_utils.h
         include/types/table_index.h debug/debug_utils.c include/debug/debug_utils.h tests/tests.h
         tests/allocation_test.c
-        )
+        tests/sector_structs.c operations/sectors/sector_utils.c include/sectors/sector_utils.h)

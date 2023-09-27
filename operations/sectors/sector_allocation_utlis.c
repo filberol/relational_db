@@ -44,4 +44,3 @@ void deallocate_sector(FILE* file, uint32_t sector_number) {
     fseek(file, sector_number * sizeof(union SectorData), SEEK_SET);
     fwrite(&header, sizeof(struct SectorHeader), 1, file);
 }
-

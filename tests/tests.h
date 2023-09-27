@@ -3,5 +3,6 @@
 
 int test_header();
 int test_alloc();
+int check_sector_write();
 
 #endif //LAB1LLP_TESTS_H
