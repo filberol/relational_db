@@ -1,4 +1,4 @@
-#include "../../include/utils/table_index_utils.h"
+#include "../../include/tables/table_index_utils.h"
 
 /*
  * Returns

@@ -1,4 +1,4 @@
-#include "../../include/utils/table_index_utils.h"
+#include "../../include/tables/table_index_utils.h"
 
 struct TableIndexArray *allocate_empty_table_index() {
     struct TableIndexArray *index_array = malloc(sizeof(struct TableIndexArray));
@@ -78,4 +78,21 @@ int remove_table_index(
         }
     }
     return -1;
+}
+
+/*
+ * Returns
+ * Table data sector index
+ * 0 - Not found
+ */
+uint32_t find_table_sector(
+        const char *table_name, struct TableIndexArray *index_table
+) {
+    uint32_t table_hash = hash_string_default(table_name);
+    for (int i = 0; i < MAX_TABLES_COUNT; i++) {
+        if (index_table->table_map[i].table_name_hash == table_hash) {
+            return index_table->table_map[i].schema_sector;
+        }
+    }
+    return 0;
 }
