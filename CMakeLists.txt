@@ -17,7 +17,7 @@ add_executable(lab1llp
         operations/sectors/sector_allocation_utils.c include/sectors/sector_allocation_utils.h
         include/types/table_index.h debug/debug_utils.c include/debug/debug_utils.h tests/tests.h
         tests/allocation_test.c
-        tests/sector_structs.c operations/sectors/sector_utils.c include/sectors/sector_utils.h
+        tests/sector_structs.c
         operations/tables/table_index_utils.c include/utils/table_index_utils.h utils/hash_utils.c
         include/utils/hash_utils.h
-        consts/hash_consts.h include/files/file_manager.h operations/tables/table_index_io_utils.c)
+        consts/hash_consts.h include/files/file_manager.h operations/tables/table_index_io_utils.c tests/index_table.c)

@@ -1,11 +1,5 @@
 #include "tests.h"
 
-#include <stdio.h>
-#include "../include/types/file_static_header.h"
-#include "../include/utils/static_header_utils.h"
-#include "../include/debug/debug_utils.h"
-#include "../include/sectors/sector_allocation_utils.h"
-
 int test_alloc() {
     struct StaticFileHeader def_header = create_file_header(10, 5, 1);
     FILE* file = fopen("test2.bin", "wb+");

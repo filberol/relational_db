@@ -1,12 +1,5 @@
 #include "tests.h"
 
-#include <stdio.h>
-#include "../include/types/file_static_header.h"
-#include "../include/utils/static_header_utils.h"
-#include "../include/types/table_index.h"
-#include "../include/sectors/sector_utils.h"
-#include "../include/sectors/sector_allocation_utils.h"
-
 int check_sector_write() {
     // Create file
     struct StaticFileHeader def_header = create_file_header(10, 5, 1);

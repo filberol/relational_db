@@ -8,5 +8,7 @@ int main() {
     test_alloc();
     printf("\tTest 3 - Trying to read something from sector\n");
     check_sector_write();
+    printf("\tTest 4 - Are table indices synchronized?\n");
+    check_table_indices_update();
     return 0;
 }

@@ -1,9 +1,5 @@
 #include "../include/debug/debug_utils.h"
 
-#include <stdio.h>
-#include "../include/types/file_static_header.h"
-#include "../include/utils/static_header_utils.h"
-
 void debug_static_header(FILE* file) {
     struct StaticFileHeader read_header;
     int readResult = read_static_header(file, &read_header);
@@ -18,6 +14,13 @@ void debug_static_header(FILE* file) {
     }
 }
 
-void debug_table_indices_from_sector(FILE* file, uint32_t sector) {
+void debug_table_indices(struct TableIndexArray* table_index) {
+    printf("Tables found\n");
+    for (int i = 0; i < MAX_TABLES_COUNT; i++) {
+        if (table_index->table_map[i].table_name_hash != TABLE_INDEX_HASH_EMPTY) {
+            struct TableIndex index = table_index->table_map[i];
+            printf("Hash: %d\tSector: %d\n", index.table_name_hash, index.schema_sector);
+        }
+    }
 
 }
