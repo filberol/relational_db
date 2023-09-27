@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "../../include/files/file_manager.h"
 
 FILE* open_file(const char* filename, const char* mode) {
     FILE* file_ptr;

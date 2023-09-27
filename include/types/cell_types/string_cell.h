@@ -7,7 +7,7 @@
 struct StringTableCell {
     struct TableCell meta;
     uint32_t string_size;
-    char string[];
+    uint32_t string_value_sector;
 };
 
 #endif //LAB1LLP_STRING_CELL_H

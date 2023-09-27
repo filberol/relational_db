@@ -1,5 +1,4 @@
 #include "../../include/utils/static_header_utils.h"
-#include "../../include/types/file_static_header.h"
 
 struct StaticFileHeader create_file_header(
         int table_count,

@@ -1,7 +1,5 @@
 #include "../../include/utils/table_schema_utils.h"
 
-#include <string.h>
-
 struct TableSchema build_empty_schema() {
     struct TableSchema new_schema;
     new_schema.id = 1;

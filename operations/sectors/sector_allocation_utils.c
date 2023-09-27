@@ -1,11 +1,5 @@
 #include "../../include/sectors/sector_allocation_utils.h"
 
-#include <stdio.h>
-#include <stdbool.h>
-#include "../../include/sectors/sectors.h"
-#include "../../include/types/file_static_header.h"
-#include "../../include/utils/static_header_utils.h"
-
 /*
  * Returns
  * -1 - cannot allocate

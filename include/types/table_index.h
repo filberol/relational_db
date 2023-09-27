@@ -5,7 +5,7 @@
 #include "../../consts/table_consts.h"
 
 struct TableIndex {
-    char name[TABLE_MAX_NAME_LENGTH];
+    uint32_t table_name_hash;
     uint32_t schema_sector;
 };
 
