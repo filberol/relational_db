@@ -20,4 +20,4 @@ add_executable(lab1llp
         tests/sector_structs.c operations/sectors/sector_utils.c include/sectors/sector_utils.h
         operations/tables/table_index_utils.c include/utils/table_index_utils.h utils/hash_utils.c
         include/utils/hash_utils.h
-        consts/hash_consts.h include/files/file_manager.h)
+        consts/hash_consts.h include/files/file_manager.h operations/tables/table_index_io_utils.c)

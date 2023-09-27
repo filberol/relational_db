@@ -1,12 +1,10 @@
 #include "tests.h"
 
 #include <stdio.h>
-#include <string.h>
 #include "../include/types/file_static_header.h"
 #include "../include/utils/static_header_utils.h"
 #include "../include/types/table_index.h"
 #include "../include/sectors/sector_utils.h"
-#include "../include/sectors/sectors.h"
 #include "../include/sectors/sector_allocation_utils.h"
 
 int check_sector_write() {
@@ -22,7 +20,7 @@ int check_sector_write() {
 
     // Create table index
     struct TableIndexArray def_table_index;
-    strcpy(def_table_index.table_map[0].name, "test_table");
+    def_table_index.table_map[0].table_name_hash = 123456;
     def_table_index.table_map[0].schema_sector = 12;
 
     // Write and check
@@ -30,7 +28,7 @@ int check_sector_write() {
     struct TableIndexArray test_table_index;
     read_table_index_from_sector(file, allocated_sector, &test_table_index);
 
-    printf("Test table name %s\n", test_table_index.table_map[0].name);
+    printf("Test table hash %u\n", test_table_index.table_map[0].table_name_hash);
 
     return 0;
 }
