@@ -22,5 +22,8 @@ void debug_table_indices(struct TableIndexArray* table_index) {
             printf("Hash: %d\tSector: %d\n", index.table_name_hash, index.schema_sector);
         }
     }
+}
 
+void debug_file_sectors_from_first() {
+    // TODO(Finish dynamic allocation with linked list)
 }

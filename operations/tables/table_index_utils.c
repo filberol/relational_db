@@ -16,10 +16,12 @@ struct TableIndexArray *allocate_empty_table_index() {
  * 0 - ok
  */
 int add_table_index(
-        FILE *file, const char *table_name, uint32_t data_sector, struct TableIndexArray *index_table
+        FILE *file, const char *table_name, uint32_t data_sector
 ) {
     struct StaticFileHeader file_info;
     read_static_header(file, &file_info);
+    struct TableIndexArray *index_table = malloc(sizeof(struct TableIndexArray));
+    read_table_index_from_sector(file, file_info.table_indices_sector, index_table);
     for (int i = 0; i < MAX_TABLES_COUNT; i++) {
         if (index_table->table_map[i].table_name_hash == TABLE_INDEX_HASH_EMPTY) {
             uint32_t new_hash = hash_string_default(table_name);
@@ -41,10 +43,12 @@ int add_table_index(
  * 0 - ok
  */
 int update_table_sector_link(
-        FILE *file, const char *table_name, uint32_t new_data_sector, struct TableIndexArray *index_table
+        FILE *file, const char *table_name, uint32_t new_data_sector
 ) {
     struct StaticFileHeader file_info;
     read_static_header(file, &file_info);
+    struct TableIndexArray *index_table = malloc(sizeof(struct TableIndexArray));
+    read_table_index_from_sector(file, file_info.table_indices_sector, index_table);
     uint32_t table_hash = hash_string_default(table_name);
     for (int i = 0; i < MAX_TABLES_COUNT; i++) {
         if (index_table->table_map[i].table_name_hash == table_hash) {
@@ -65,10 +69,12 @@ int update_table_sector_link(
  * 0 - ok
  */
 int remove_table_index(
-        FILE *file, const char *table_name, struct TableIndexArray *index_table
+        FILE *file, const char *table_name
 ) {
     struct StaticFileHeader file_info;
     read_static_header(file, &file_info);
+    struct TableIndexArray *index_table = malloc(sizeof(struct TableIndexArray));
+    read_table_index_from_sector(file, file_info.table_indices_sector, index_table);
     uint32_t table_hash = hash_string_default(table_name);
     for (int i = 0; i < MAX_TABLES_COUNT; i++) {
         if (index_table->table_map[i].table_name_hash == table_hash) {
