@@ -8,7 +8,7 @@
 // Sector attributes
 struct SectorHeader {
     bool is_taken;
-    int sectors_taken_in_row;
+    size_t sectors_taken_in_row;
     uint32_t previous_sector_number;
     uint32_t next_sector_number;
 };

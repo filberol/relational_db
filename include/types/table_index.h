@@ -10,6 +10,7 @@ struct TableIndex {
 };
 
 struct TableIndexArray {
+    uint32_t next_table_sector;
     struct TableIndex table_map[MAX_TABLES_COUNT];
 };
 

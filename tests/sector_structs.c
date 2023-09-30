@@ -8,7 +8,7 @@ int check_sector_write() {
 
     // Allocate sector
     int sectors_needed = (sizeof(struct TableIndexArray) + sizeof(struct SectorHeader) + 100) / SECTOR_SIZE;
-    uint32_t allocated_sector = allocate_sector(file, sectors_needed, -1, -1);
+    uint32_t allocated_sector = allocate_sector(file, sectors_needed);
     printf("Allocated from sector %d\n", allocated_sector);
 
     // Create table index

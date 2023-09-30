@@ -18,11 +18,11 @@ union TableCellWithData {
     struct StringTableCell string_c;
 };
 
-struct TableSchema {
+struct TableScheme {
     char name[TABLE_MAX_NAME_LENGTH];
-    uint32_t data_first_sector;
     int columns_count;
-    struct HeaderCell columns[TABLE_MAX_COLUMNS];
+    uint32_t columns_info_sector;
+    uint32_t data_first_sector;
 };
 
 #endif //LAB1LLP_TABLE_SCHEMA_H

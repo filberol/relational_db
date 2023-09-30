@@ -2,6 +2,7 @@
 
 struct TableIndexArray *allocate_empty_table_index() {
     struct TableIndexArray *index_array = malloc(sizeof(struct TableIndexArray));
+    index_array->next_table_sector = TABLE_INDEX_HASH_EMPTY;
     for (int i = 0; i < MAX_TABLES_COUNT; i++) {
         index_array->table_map[i].table_name_hash = TABLE_INDEX_HASH_EMPTY;
     }
@@ -15,9 +16,10 @@ struct TableIndexArray *allocate_empty_table_index() {
  * 0 - ok
  */
 int add_table_index(
-        uint32_t indices_sector, FILE *file,
-        const char *table_name, uint32_t data_sector, struct TableIndexArray *index_table
+        FILE *file, const char *table_name, uint32_t data_sector, struct TableIndexArray *index_table
 ) {
+    struct StaticFileHeader file_info;
+    read_static_header(file, &file_info);
     for (int i = 0; i < MAX_TABLES_COUNT; i++) {
         if (index_table->table_map[i].table_name_hash == TABLE_INDEX_HASH_EMPTY) {
             uint32_t new_hash = hash_string_default(table_name);
@@ -26,7 +28,7 @@ int add_table_index(
             index_table->table_map[i].schema_sector = data_sector;
             // Save instantly
             // TODO(Create flushes for table indices update)
-            return write_table_index_to_sector(file, indices_sector, index_table);
+            return write_table_index_to_sector(file, file_info.table_indices_sector, index_table);
             // return 0;
         }
     }
@@ -39,9 +41,10 @@ int add_table_index(
  * 0 - ok
  */
 int update_table_sector_link(
-        uint32_t indices_sector, FILE *file,
-        const char *table_name, uint32_t new_data_sector, struct TableIndexArray *index_table
+        FILE *file, const char *table_name, uint32_t new_data_sector, struct TableIndexArray *index_table
 ) {
+    struct StaticFileHeader file_info;
+    read_static_header(file, &file_info);
     uint32_t table_hash = hash_string_default(table_name);
     for (int i = 0; i < MAX_TABLES_COUNT; i++) {
         if (index_table->table_map[i].table_name_hash == table_hash) {
@@ -49,7 +52,7 @@ int update_table_sector_link(
             index_table->table_map[i].schema_sector = new_data_sector;
             // Save instantly
             // TODO(Create flushes for table indices update)
-            return write_table_index_to_sector(file, indices_sector, index_table);
+            return write_table_index_to_sector(file, file_info.table_indices_sector, index_table);
             // return 0;
         }
     }
@@ -62,9 +65,10 @@ int update_table_sector_link(
  * 0 - ok
  */
 int remove_table_index(
-        uint32_t indices_sector, FILE *file,
-        const char *table_name, struct TableIndexArray *index_table
+        FILE *file, const char *table_name, struct TableIndexArray *index_table
 ) {
+    struct StaticFileHeader file_info;
+    read_static_header(file, &file_info);
     uint32_t table_hash = hash_string_default(table_name);
     for (int i = 0; i < MAX_TABLES_COUNT; i++) {
         if (index_table->table_map[i].table_name_hash == table_hash) {
@@ -73,7 +77,7 @@ int remove_table_index(
             index_table->table_map[i].schema_sector = TABLE_INDEX_HASH_EMPTY;
             // Save instantly
             // TODO(Create flushes for table indices update)
-            return write_table_index_to_sector(file, indices_sector, index_table);
+            return write_table_index_to_sector(file, file_info.table_indices_sector, index_table);
             // return 0;
         }
     }

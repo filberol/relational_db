@@ -5,7 +5,7 @@
  * -1 - cannot allocate
  * number - sector number
  */
-uint32_t allocate_sector(FILE* file, int alloc_size, uint32_t prev_sector, uint32_t next_sector) {
+uint32_t allocate_sector(FILE* file, size_t alloc_size) {
     // TODO(Make allocation of sectors dynamic, now writing only at the end)
     struct StaticFileHeader static_header;
     int read_result = read_static_header(file, &static_header);
@@ -16,8 +16,8 @@ uint32_t allocate_sector(FILE* file, int alloc_size, uint32_t prev_sector, uint3
     struct SectorHeader header;
     header.is_taken = true;
     header.sectors_taken_in_row = alloc_size;
-    header.previous_sector_number = prev_sector; // Set appropriate values
-    header.next_sector_number = next_sector; // Set appropriate values
+    header.previous_sector_number = -1; // Set appropriate values
+    header.next_sector_number = -1; // Set appropriate values
 
     // Write the updated header to the file
     write_sector_header_by_index(file, free_sector, &header);

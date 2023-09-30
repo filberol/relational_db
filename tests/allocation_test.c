@@ -5,8 +5,8 @@ int test_alloc() {
     FILE* file = fopen("test2.bin", "wb+");
     write_static_header(file, &def_header);
 
-    uint32_t alloc = allocate_sector(file, 3, -1, -1);
-    uint32_t alloc2 = allocate_sector(file, 3, -1, -1);
+    uint32_t alloc = allocate_sector(file, 3);
+    uint32_t alloc2 = allocate_sector(file, 3);
     printf("Allocated sectors %d and %d\n", alloc, alloc2);
 
     fclose(file);

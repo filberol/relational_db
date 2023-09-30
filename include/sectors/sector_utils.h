@@ -8,8 +8,9 @@
 #include "../../include/types/file_static_header.h"
 #include "../../include/utils/static_header_utils.h"
 
-uint32_t allocate_sector(FILE* file, int alloc_size, uint32_t prev_sector, uint32_t next_sector);
+uint32_t allocate_sector(FILE* file, size_t alloc_size);
 void deallocate_sector(FILE* file, uint32_t sector_number);
+size_t calculate_sectors_needed(size_t struct_size);
 
 int read_sector_header_by_index(FILE *file, uint32_t sector_number, struct SectorHeader *header);
 int write_sector_header_by_index(FILE *file, uint32_t sector_number, struct SectorHeader *header);
