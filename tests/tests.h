@@ -9,11 +9,14 @@
 #include "../include/sectors/sector_utils.h"
 #include "../include/tables/table_index_utils.h"
 #include "../include/instructions/file_instructions.h"
+#include "../include/tables/table_schema_utils.h"
+#include "../include/types/column_types.h"
 
 int test_header();
 int test_alloc();
 int check_sector_write();
 int check_table_indices_update();
 int init_and_debug_table();
+int check_write_data();
 
 #endif //LAB1LLP_TESTS_H

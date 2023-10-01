@@ -30,9 +30,15 @@ int init_table_scheme(
     }
 
     //Write scheme and column headers
-    write_data_to_sector(file, empty_scheme, sizeof(struct TableScheme), table_scheme_sector);
-    write_data_to_sector(file, empty_columns, column_headers_buff_size, table_headers_sector);
+    int a = write_data_to_sector(file, empty_scheme, sizeof(struct TableScheme), table_scheme_sector);
+    int b = write_data_to_sector(file, empty_columns, column_headers_buff_size, table_headers_sector);
+    printf("%d\n", a);
+    printf("%d\n", b);
     free(empty_columns);
+
+    struct StaticFileHeader header;
+    read_static_header(file, &header);
+    add_table_index(header.table_indices_sector, file, table_name, table_scheme_sector);
 
     return 0;
 }

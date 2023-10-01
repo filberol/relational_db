@@ -14,7 +14,7 @@ size_t calculate_sectors_needed(size_t struct_size) {
  * -3 - Sector not allocated previously
  * -2 - Sector taken
  * -1 - Error writing sector
- * number - sector number
+ * 0 - ok
  */
 size_t write_data_to_sector(FILE* file, void* data_ptr, size_t buffer_size, uint32_t sector_n) {
     struct SectorHeader current_header;
@@ -23,8 +23,7 @@ size_t write_data_to_sector(FILE* file, void* data_ptr, size_t buffer_size, uint
     if (sec_read == -1) return -3;
     // Protection from overwriting
     if (calculate_sectors_needed(buffer_size) > current_header.sectors_taken_in_row) return -4;
-    // Protection from random writes
-    if (current_header.is_taken) return -2;
+
 
     current_header.is_taken = true;
     size_t sector_ptr = sector_n * SECTOR_SIZE;
@@ -42,7 +41,7 @@ size_t write_data_to_sector(FILE* file, void* data_ptr, size_t buffer_size, uint
  * -3 - Sector not allocated previously
  * -2 - Sector freed
  * -1 - Error read sector
- * number - sector number
+ * 0 - sector number
  */
 size_t read_data_from_sector(FILE* file, void* data_ptr, size_t buffer_size, uint32_t sector_n) {
     struct SectorHeader current_header;
