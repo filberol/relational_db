@@ -3,21 +3,24 @@ project(lab1llp C)
 
 set(CMAKE_C_STANDARD 11)
 
+file(GLOB_RECURSE consts_include_src "consts/*.h")
+file(GLOB_RECURSE include_files_src "include/*.h")
+
+file(GLOB_RECURSE debug_utils_src "debug/*.c")
+file(GLOB_RECURSE instructions_src "instructions/*.c")
+file(GLOB_RECURSE io_src "io/*.c")
+file(GLOB_RECURSE operations_src "operations/*.c")
+file(GLOB_RECURSE tests_src "tests/*.c")
+file(GLOB_RECURSE utils_src "utils/*.c")
+
 add_executable(lab1llp
         main.c
-        include/types/column_types.h
-        include/types/cell_types/int_cell.h
-        include/types/cell_types/cell.h
-        include/types/cell_types/string_cell.h include/types/cell_types/bool_cell.h
-        include/types/cell_types/bigint_cell.h include/types/cell_types/float_cell.h
-        include/types/schema/table_schema.h include/types/file_static_header.h
-        io/files/file_manager.c consts/sector_consts.h include/sectors/sectors.h
-        consts/table_consts.h operations/schemas/table_schema_utils.c include/tables/table_schema_utils.h
-        operations/files/static_header_utils.c include/utils/static_header_utils.h tests/header_test.c
-        operations/sectors/sector_allocation_utils.c include/sectors/sector_utils.h
-        include/types/table_index.h debug/debug_utils.c include/debug/debug_utils.h tests/tests.h
-        tests/allocation_test.c
-        tests/sector_structs.c
-        operations/tables/table_index_utils.c include/tables/table_index_utils.h utils/hash_utils.c
-        include/utils/hash_utils.h
-        consts/hash_consts.h include/files/file_manager.h operations/tables/table_index_io_utils.c tests/index_table.c operations/sectors/sector_io_utils.c operations/sectors/sector_header_utils.c tests/table_creation.c instructions/file_instructions.c tests/data_save.c)
+        ${consts_include_src}
+        ${include_files_src}
+        ${debug_utils_src}
+        ${instructions_src}
+        ${io_src}
+        ${operations_src}
+        ${tests_src}
+        ${utils_src}
+        )

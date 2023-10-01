@@ -9,6 +9,7 @@
 #include "../sectors/sectors.h"
 #include "../utils/hash_utils.h"
 #include "../utils/static_header_utils.h"
+#include "../../include/sectors/sector_utils.h"
 
 int read_table_index_from_sector(FILE *file, uint32_t sector_number, struct TableIndexArray *table_index);
 int write_table_index_to_sector(FILE *file, uint32_t sector_number, struct TableIndexArray *table_index);
