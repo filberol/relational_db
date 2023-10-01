@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "tests/tests.h"
+#include "tests.h"
 
 int main() {
     printf("\tTest 1 - Read and write header\n");

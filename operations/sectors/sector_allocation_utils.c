@@ -21,9 +21,6 @@ uint32_t allocate_sector(FILE* file, size_t alloc_size) {
 
     // Write the updated header to the file
     write_sector_header_by_index(file, free_sector, &header);
-//    TODO(Replaced logic, check test)
-//    fseek(file, free_sector * sizeof(union SectorData), SEEK_SET);
-//    fwrite(&header, sizeof(struct SectorHeader), 1, file);
     write_static_header(file, &static_header);
 
     return free_sector;
@@ -33,15 +30,9 @@ void deallocate_sector(FILE* file, uint32_t sector_number) {
     // TODO(Tracking of free sectors)
     struct SectorHeader header;
     read_sector_header_by_index(file, sector_number, &header);
-//    TODO(Replaced logic, check tests)
-//    fseek(file, sector_number * sizeof(union SectorData), SEEK_SET);
-//    fread(&header, sizeof(struct SectorHeader), 1, file);
 
     header.is_taken = false;
 
     // Rewrite sector data
     write_sector_header_by_index(file, sector_number, &header);
-//    TODO(Replaced logic, check tests)
-//    fseek(file, sector_number * sizeof(union SectorData), SEEK_SET);
-//    fwrite(&header, sizeof(struct SectorHeader), 1, file);
 }

@@ -10,17 +10,25 @@ file(GLOB_RECURSE debug_utils_src "debug/*.c")
 file(GLOB_RECURSE instructions_src "instructions/*.c")
 file(GLOB_RECURSE io_src "io/*.c")
 file(GLOB_RECURSE operations_src "operations/*.c")
-file(GLOB_RECURSE tests_src "tests/*.c")
 file(GLOB_RECURSE utils_src "utils/*.c")
 
-add_executable(lab1llp
-        main.c
+file(GLOB_RECURSE tests_src "lab_tests/*.c")
+
+add_library(lab1llp_lib
         ${consts_include_src}
         ${include_files_src}
         ${debug_utils_src}
         ${instructions_src}
         ${io_src}
         ${operations_src}
-        ${tests_src}
         ${utils_src}
-        )
+    )
+
+add_executable(lab1llp_tests
+        lab_tests/main_tests.c
+        ${tests_src}
+    )
+
+target_link_libraries(lab1llp_tests
+        PRIVATE lab1llp_lib
+    )
