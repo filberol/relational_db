@@ -1,5 +1,16 @@
 #include "../include/debug/debug_utils.h"
 
+char* cell_type_to_string(enum CellType cell) {
+    switch (cell) {
+        case TABLE_TYPE_INT: return "Int";
+        case TABLE_TYPE_BIGINT: return "BigInt";
+        case TABLE_TYPE_VARCHAR: return "VarChar";
+        case TABLE_TYPE_FLOAT: return "Float";
+        case TABLE_TYPE_BOOL: return "Bool";
+        case TABLE_TYPE_EMPTY: return "None";
+    }
+}
+
 void debug_static_header(FILE* file) {
     struct StaticFileHeader read_header;
     int readResult = read_static_header(file, &read_header);
@@ -37,12 +48,27 @@ void debug_table_info(FILE* file, const char* table_name) {
     read_static_header(file, &header);
 
     uint32_t schema_sector = find_table_sector(header.table_indices_sector, file, table_name);
-    printf("Found sector %d\n", schema_sector);
     struct TableScheme scheme;
     read_data_from_sector(file, &scheme, sizeof(struct TableScheme), schema_sector);
-    printf("Table scheme\n");
+
+    printf("Table scheme sector %d\n", schema_sector);
     printf("Name: %s\n", scheme.name);
     printf("Columns count: %d\n", scheme.columns_count);
 }
 
-void debug_schema_columns(FILE* file, const char* table_name) {}
+void debug_schema_columns(FILE* file, const char* table_name) {
+    struct StaticFileHeader header;
+    read_static_header(file, &header);
+
+    uint32_t schema_sector = find_table_sector(header.table_indices_sector, file, table_name);
+    struct TableScheme scheme;
+    read_data_from_sector(file, &scheme, sizeof(struct TableScheme), schema_sector);
+
+    int col_count = scheme.columns_count;
+    struct HeaderCell headers[col_count];
+    read_data_from_sector(file, &headers, sizeof(struct HeaderCell) * col_count, scheme.columns_info_sector);
+
+    for (int i = 0; i < col_count; i++) {
+        printf("Column %s\t type %s\n", headers[i].column_name, cell_type_to_string(headers[i].meta.cell_type));
+    }
+}

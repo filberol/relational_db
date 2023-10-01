@@ -30,10 +30,8 @@ int init_table_scheme(
     }
 
     //Write scheme and column headers
-    int a = write_data_to_sector(file, empty_scheme, sizeof(struct TableScheme), table_scheme_sector);
-    int b = write_data_to_sector(file, empty_columns, column_headers_buff_size, table_headers_sector);
-    printf("%d\n", a);
-    printf("%d\n", b);
+    write_data_to_sector(file, empty_scheme, sizeof(struct TableScheme), table_scheme_sector);
+    write_data_to_sector(file, empty_columns, column_headers_buff_size, table_headers_sector);
     free(empty_columns);
 
     struct StaticFileHeader header;
@@ -61,7 +59,7 @@ int schema_set_column(
 
     strcpy(new_cell.column_name, column_name);
     new_cell.meta.cell_type = col_type;
-    columns[col_num] = new_cell;
+    columns[col_num - 1] = new_cell;
 
     write_data_to_sector(file, &columns, col_buff_size, scheme->columns_info_sector);
     return 0;
