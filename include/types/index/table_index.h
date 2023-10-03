@@ -2,7 +2,7 @@
 #define LAB1LLP_TABLE_INDEX_H
 
 #include <stdint.h>
-#include "../../consts/table_consts.h"
+#include "../../../consts/table_consts.h"
 
 struct TableIndex {
     uint32_t table_name_hash;

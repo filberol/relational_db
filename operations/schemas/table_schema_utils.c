@@ -8,6 +8,7 @@
 int init_table_scheme(
         FILE* file, const char *table_name, int column_count, struct TableScheme* empty_scheme
 ) {
+    if (column_count > TABLE_MAX_COLUMNS) return -1;
     if (strlen(table_name) > TABLE_MAX_NAME_LENGTH) return -1;
 
     size_t column_headers_buff_size = sizeof(struct HeaderCell) * column_count;

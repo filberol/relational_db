@@ -9,6 +9,4 @@ struct IntTableCell {
     int32_t value;
 };
 
-size_t sizeOfIntCell();
-
 #endif //LAB1LLP_INT_CELL_H

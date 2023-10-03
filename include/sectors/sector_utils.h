@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "../../include/sectors/sectors.h"
-#include "../../include/types/file_static_header.h"
+#include "../types/static/file_static_header.h"
 #include "../../include/utils/static_header_utils.h"
 
 uint32_t allocate_sector(FILE* file, size_t alloc_size);

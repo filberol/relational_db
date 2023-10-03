@@ -2,8 +2,8 @@
 #define LAB1LLP_FILE_INSTRUCTIONS_H
 
 #include <stdio.h>
-#include "../types/file_static_header.h"
-#include "../types/table_index.h"
+#include "../types/static/file_static_header.h"
+#include "../types/index/table_index.h"
 #include "../../include/utils/static_header_utils.h"
 #include "../../include/sectors/sector_utils.h"
 #include "../../include/tables/table_index_utils.h"

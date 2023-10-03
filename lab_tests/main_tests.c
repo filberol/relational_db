@@ -14,5 +14,7 @@ int main() {
     check_write_data();
     printf("\tTest 6 - Are tables saved correctly\n");
     init_and_debug_table();
+    printf("\tTest 7 - Filling table\n");
+    fill_rows();
     return 0;
 }

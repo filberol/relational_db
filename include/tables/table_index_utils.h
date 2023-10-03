@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
-#include "../types/table_index.h"
+#include "../types/index/table_index.h"
 #include "../../consts/sector_consts.h"
 #include "../sectors/sectors.h"
 #include "../utils/hash_utils.h"

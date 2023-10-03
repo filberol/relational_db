@@ -3,9 +3,9 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include "../../include/types/file_static_header.h"
+#include "../types/static/file_static_header.h"
 #include "../../include/utils/static_header_utils.h"
-#include "../../include/types/table_index.h"
+#include "../types/index/table_index.h"
 #include "../../consts/table_consts.h"
 #include "../../consts/hash_consts.h"
 #include "../../include/tables/table_index_utils.h"

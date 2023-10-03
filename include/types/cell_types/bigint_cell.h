@@ -1,7 +1,6 @@
 #ifndef LAB1LLP_BIGINT_CELL_H
 #define LAB1LLP_BIGINT_CELL_H
 
-#include <stdint.h>
 #include "cell.h"
 
 struct BigIntTableCell {

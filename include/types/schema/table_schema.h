@@ -23,6 +23,7 @@ struct TableScheme {
     int columns_count;
     uint32_t columns_info_sector;
     uint32_t data_first_sector;
+    uint32_t data_last_sector;
 };
 
 #endif //LAB1LLP_TABLE_SCHEMA_H
