@@ -12,4 +12,5 @@ int fill_rows() {
 
     union TableCellWithData table1row[table1scheme.columns_count];
 
+    return 0;
 }

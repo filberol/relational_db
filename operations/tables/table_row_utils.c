@@ -41,3 +41,10 @@ int row_set_value(
     return 0;
 }
 
+int add_row_to_file(FILE* file, const struct TableScheme* scheme, union TableCellWithData *rows) {
+//    uint32_t sector_n = scheme.
+    return 0;
+}
+
+void print_cell_value() {}
+

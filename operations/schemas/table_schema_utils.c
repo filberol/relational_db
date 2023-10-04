@@ -21,6 +21,7 @@ int init_table_scheme(
     empty_scheme->columns_count = column_count;
     empty_scheme->columns_info_sector = table_headers_sector;
     empty_scheme->data_first_sector = TABLE_INDEX_HASH_EMPTY; // Empty rows
+    empty_scheme->data_last_sector = TABLE_INDEX_HASH_EMPTY;
 
     struct HeaderCell* empty_columns = malloc(column_headers_buff_size);
     struct HeaderCell empty_cell = {

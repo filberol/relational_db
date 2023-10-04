@@ -11,6 +11,7 @@
 #include "../include/instructions/file_instructions.h"
 #include "../include/tables/table_schema_utils.h"
 #include "../include/types/schema/column_types.h"
+#include "../include/utils/file_string_utils.h"
 
 int test_header();
 int test_alloc();

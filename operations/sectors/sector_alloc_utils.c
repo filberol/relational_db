@@ -16,7 +16,7 @@ uint32_t allocate_sector(FILE* file, size_t alloc_size) {
     struct SectorHeader header;
     header.is_taken = true;
     header.sectors_taken_in_row = alloc_size;
-    header.previous_sector_number = -1; // Set appropriate values
+    header.prev_sector_number = -1; // Set appropriate values
     header.next_sector_number = -1; // Set appropriate values
 
     // Write the updated header to the file

@@ -9,9 +9,10 @@
 struct SectorHeader {
     bool is_taken;
     size_t sectors_taken_in_row;
-    uint32_t previous_sector_number;
+    uint32_t prev_sector_number;
     uint32_t next_sector_number;
 
+    uint32_t prev_logical_data_sector;
     uint32_t next_logical_data_sector;
 };
 
