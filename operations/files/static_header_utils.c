@@ -3,12 +3,13 @@
 struct StaticFileHeader create_file_header(
         int table_count,
         int table_indices_sector,
-        int last_sector_taken
+        int first_data_sector
 ) {
     struct StaticFileHeader header;
     header.table_count = table_count;
     header.table_indices_sector = table_indices_sector;
-    header.first_at_end_free = last_sector_taken;
+    header.first_at_end_free = first_data_sector;
+    header.last_sector = TABLE_INDEX_HASH_EMPTY;
     return header;
 }
 

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "../types/static/file_static_header.h"
+#include "../../consts/hash_consts.h"
 
 struct StaticFileHeader create_file_header(int table_count, int table_indices_sector, int last_sector_taken);
 struct StaticFileHeader create_empty_file_header();

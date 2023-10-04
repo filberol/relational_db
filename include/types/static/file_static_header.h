@@ -7,6 +7,7 @@
 struct StaticFileHeader {
     uint32_t table_count;
     uint32_t table_indices_sector;
+    uint32_t last_sector;
     uint32_t first_at_end_free;
 };
 

@@ -2,16 +2,8 @@
 
 int check_table_indices_update() {
     // Create file
-    struct StaticFileHeader def_header = create_file_header(10, 5, 1);
     FILE* file = fopen("test2.bin", "wb+");
-    write_static_header(file, &def_header);
-
-    // Allocate sector
-    int sectors_needed = (sizeof(struct TableIndexArray) + sizeof(struct SectorHeader) + 100) / SECTOR_SIZE;
-    allocate_sector(file, sectors_needed);
-    struct TableIndexArray* global_index_array = allocate_empty_table_index();
-    write_table_index_to_sector(file, def_header.table_indices_sector, global_index_array);
-
+    create_file_and_init_empty_structure(file);
 
     // From here act as existing table
     // Create and synchronize table indices
