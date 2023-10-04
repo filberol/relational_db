@@ -20,6 +20,7 @@ int init_table_scheme(
     strcpy(empty_scheme->name, table_name);
     empty_scheme->columns_count = column_count;
     empty_scheme->columns_info_sector = table_headers_sector;
+    empty_scheme->own_sector = table_scheme_sector;
     empty_scheme->data_first_sector = TABLE_INDEX_HASH_EMPTY; // Empty rows
     empty_scheme->data_last_sector = TABLE_INDEX_HASH_EMPTY;
 

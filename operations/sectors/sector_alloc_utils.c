@@ -22,7 +22,7 @@ uint32_t allocate_sector(FILE *file, size_t alloc_size) {
     if (last_sector == TABLE_INDEX_HASH_EMPTY) {
         // Write sector
         header.prev_sector_number = TABLE_INDEX_HASH_EMPTY;
-        header.next_sector_number = -1; // Set appropriate values
+        header.next_sector_number = TABLE_INDEX_HASH_EMPTY;
         write_sector_header_by_index(file, header_ptr_free, &header);
     } else {
         // Change last sector header
@@ -33,7 +33,7 @@ uint32_t allocate_sector(FILE *file, size_t alloc_size) {
 
         // Write new sector
         header.prev_sector_number = last_sector;
-        header.next_sector_number = -1; // Set appropriate values
+        header.next_sector_number = TABLE_INDEX_HASH_EMPTY;
         write_sector_header_by_index(file, header_ptr_free, &header);
     }
 

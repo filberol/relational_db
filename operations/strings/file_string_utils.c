@@ -5,7 +5,7 @@
  * -1 - wrong args
  * number - sector written
  */
-uint32_t write_string_to_file(FILE* file, const char* string) {
+uint32_t write_string_to_sector(FILE* file, const char* string) {
     size_t buff_size = strlen(string) + SECTOR_TO_DATA_MARGIN;
     char buffer[buff_size];
     strcpy(buffer, string);
