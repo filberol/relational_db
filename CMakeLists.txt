@@ -29,6 +29,14 @@ add_executable(lab1llp_tests
         ${tests_src}
     )
 
+add_executable(lab1llp_benchmarks
+        lab_benchmarks/main_benchmarks.c
+        )
+
 target_link_libraries(lab1llp_tests
         PRIVATE lab1llp_lib
     )
+
+target_link_libraries(lab1llp_benchmarks
+        PRIVATE lab1llp_lib
+        )
