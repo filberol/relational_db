@@ -13,6 +13,7 @@
 #include "../include/types/schema/column_types.h"
 #include "../include/utils/file_string_utils.h"
 #include "../include/tables/table_row_utils.h"
+#include "../include/tables/table_cell_utils.h"
 
 int test_header();
 int test_alloc();

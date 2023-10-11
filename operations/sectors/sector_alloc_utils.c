@@ -46,12 +46,30 @@ uint32_t allocate_sector(FILE *file, size_t alloc_size) {
 }
 
 void deallocate_sector(FILE *file, uint32_t sector_number) {
-    // TODO(Tracking of free sectors)
-    struct SectorHeader header;
-    read_sector_header_by_index(file, sector_number, &header);
+    struct SectorHeader header_to_free;
+    read_sector_header_by_index(file, sector_number, &header_to_free);
+    if (!header_to_free.is_taken) return;
 
-    header.is_taken = false;
-
-    // Rewrite sector data
-    write_sector_header_by_index(file, sector_number, &header);
+    header_to_free.is_taken = false;
+    struct SectorHeader linked_sector;
+    // Append at right
+    if (header_to_free.next_sector_number != TABLE_INDEX_HASH_EMPTY) {
+        read_sector_header_by_index(file, header_to_free.next_sector_number, &linked_sector);
+        if (!linked_sector.is_taken) {
+            header_to_free.next_sector_number = linked_sector.next_sector_number;
+            header_to_free.sectors_taken_in_row += linked_sector.sectors_taken_in_row;
+            // Change current freed
+            write_sector_header_by_index(file, sector_number, &header_to_free);
+        }
+    }
+    // Append at left
+    if (header_to_free.prev_sector_number != TABLE_INDEX_HASH_EMPTY) {
+        read_sector_header_by_index(file, header_to_free.prev_sector_number, &linked_sector);
+        if (!linked_sector.is_taken) {
+            linked_sector.next_sector_number = header_to_free.next_sector_number;
+            linked_sector.sectors_taken_in_row += header_to_free.sectors_taken_in_row;
+            // Change prev, concatenate
+            write_sector_header_by_index(file, header_to_free.prev_sector_number, &linked_sector);
+        }
+    }
 }
