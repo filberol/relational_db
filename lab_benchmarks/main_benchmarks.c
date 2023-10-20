@@ -35,6 +35,7 @@ int get_memory_usage() {
 
 int main() {
     FILE* result_set_file = fopen("../lab_bench_res/benchmark_results.csv", "w");
+    FILE* fs_burn_file = fopen("../lab_bench_res/fs_burn_test.csv", "w");
     FILE* database_file = fopen(db_file_name, "wb+");
 
     fprintf(result_set_file, "Rows,Insertion Time (ms),Deletion time(ms),File Size (bytes),Memory Usage (KB)\n");
@@ -79,6 +80,34 @@ int main() {
         add_row_to_file(database_file, &table1scheme, table1row);
 
         fprintf(result_set_file, "%d,%f,%f,%ld,%d\n", row_num, insertion_time, deletion_time, file_size, memory_usage);
+    }
+
+    printf("finished_tests\n");
+
+    // escape with ctrlc
+    fprintf(fs_burn_file, "File_size, Cycle time\n");
+    srand(time(0));
+    uint32_t count = 1;
+    while (1) {
+        clock_t time_trig = clock();
+        count++;
+        for (int i = 0; i < 900; i++) {
+            if (i < 500) {
+                add_row_to_file(database_file, &table1scheme, table1row);
+            }
+            if (i >= 500) {
+                uint32_t lower = 1;
+                uint32_t upper = i + 1;
+                uint32_t rand_row = (rand() % (upper * count - lower + 1)) + lower;
+                delete_row_from_file(database_file, rand_row, &table1scheme);
+            }
+            if (i % 100 == 0) {
+                fprintf(fs_burn_file, "%ld, %f\n", get_file_size(db_file_name), ((double) (clock() - time_trig)) / CLOCKS_PER_SEC * 1000 );
+                time_trig = clock();
+                fflush(fs_burn_file);
+                printf("write cycle\n");
+            }
+        }
     }
 
     fclose(result_set_file);
